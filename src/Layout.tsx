@@ -28,7 +28,7 @@ const Layout = () => {
   const navigate = useNavigate();
   const { currentUser } = useCurrentUserStore();
   const noteStore = useNoteStore();
-  const [isLoading, setIsLoading] = useState(false);
+  //const [isLoading, setIsLoading] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
   const [searchResult, setSearchResult] = useState<Note[]>([]);
 
@@ -56,11 +56,11 @@ const Layout = () => {
   }, [currentUser]);
 
   const fetchNotes = async () => {
-    setIsLoading(true);
+   // setisLoading(true)
     const notes = await noteRepository.find(currentUser!.uid);
       console.log('取得したノート:', notes); // ← これ追加
     noteStore.set(notes);
-    setIsLoading(false);
+    //setIsLoading(false);
   };
 
   const searchNotes = async (keyword: string) => {
