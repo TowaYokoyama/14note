@@ -26,19 +26,23 @@ export function SearchModal({
     <CommandDialog open={isOpen} onOpenChange={onClose}>
       <Command >
         <CommandInput
-          placeholder={'キーワードで検索'}
-          onValueChange={debounced}
+          placeholder='キーワードで検索'
+          onValueChange={(val)=> {
+            console.log('入力', val);//これが表示されているか確認
+            debounced(val);
+          }}
+          className="bg-white text-black"
         />
         <CommandList>
           <CommandEmpty>条件に一致するノートがありません</CommandEmpty>
-          <CommandGroup>
+          <CommandGroup heading="ノート">
             {notes?.map((note) => (
               <CommandItem
                 key={note.id}
                 title={note.title ?? '無題'}
                 onSelect={() => onItemSelect(note.id)}
               >
-                <span>{note.title ?? '無題'}</span>
+                {note.title || '無題'}
               </CommandItem>
             ))}
           </CommandGroup>

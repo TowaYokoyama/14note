@@ -24,12 +24,15 @@ export function Item({
         'group min-h-[27px] text-sm py-1 pr-3 w-full flex items-center text-muted-foreground font-medium',
         isActive && 'bg-neutral-200'
       )}
-      onClick={onClick}
+      onClick={onClick} 
       role="button"
       style={{ paddingLeft: '12px' }}
     >
       <Icon
-        onClick={onIconClick}
+        onClick={(event)=> {
+          event.stopPropagation(); //これで親のonClickをブロックしないように制御
+          onIconClick?.(event);
+        }}
         className="shrink-0 w-[18px] h-[18px] mr-2 text-muted-foreground"
       />
       <span className="truncate">{label}</span>

@@ -24,7 +24,14 @@ const SideBar: FC<Props> = ({ onSearchButtonClicked }) => {
       currentUserStore.currentUser!.uid,
       {}
     );
-    noteStore.set([newNote]);//新しいノートを状態に追加
+
+      // 現在のノート一覧を取得（noteStoreに get() メソッドがあれば）
+  const currentNotes = noteStore.getAll(); // もし get() がなければ別の方法で取得してください
+
+   noteStore.set( [...currentNotes, newNote]
+   ); // 既存ノートに追加
+
+    //setTitle('');    
     navigate(`/notes/${newNote.id}`);//作成したノートに遷移
   };
 
@@ -40,7 +47,14 @@ const SideBar: FC<Props> = ({ onSearchButtonClicked }) => {
         <div>
           <div>
             <UserItem user={currentUserStore.currentUser!} signout={signout} />{/*ユーザー名やログアウトボタンが表示される部分 */}
-            <Item label="検索" icon={Search} onClick={onSearchButtonClicked} />{/*検索ボタンを押すと  onSeachbuttonClicked()が実行され、モーダルが開きます*/}
+            <Item 
+            label="検索"
+             icon={Search} 
+            onClick={()=>{
+              console.log("検索がクリックされた")
+              onSearchButtonClicked();
+            } }
+            />{/*検索ボタンを押すと  onSeachbuttonClicked()が実行され、モーダルが開きます*/}
           </div>
           <div className="mt-4">
             <NoteList /> {/*ノート一覧を表示 */}

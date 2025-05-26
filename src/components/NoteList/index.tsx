@@ -65,7 +65,12 @@ export function NoteList({ layer = 0, parentId }: NoteListProps) {
     navigate(`/notes/${noteId}`);
   };
 
-  const filteredNotes = notes.filter((note) => note.parentDocument === parentId);
+  const filteredNotes = notes.filter((note) =>  {
+    const isRoot= parentId === undefined;
+    return isRoot
+    ? note.parentDocument === null || note.parentDocument === undefined 
+    :
+    note.parentDocument === parentId});
 
   return (
     <>

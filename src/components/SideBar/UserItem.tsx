@@ -26,7 +26,7 @@ const UserItem: FC<Props> = ({ user, signout }) => {
         >
           <div className="gap-x-2 flex items-center max-w-[150px]">
             <span className="text-start font-medium line-clamp-1">
-              {user.displayName} さんのノート
+              {user.displayName} のノート
             </span>
           </div>
           <ChevronsLeftRight className="rotate-90 ml-2 text-muted-foreground w-4 h-4" />

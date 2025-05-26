@@ -67,8 +67,8 @@ export const noteRepository = {
     const keywordLower = keyword.toLowerCase();
 
     return allNotes.filter(note =>
-      note.title?.toLowerCase().includes(keywordLower) ||
-      note.content?.toLowerCase().includes(keywordLower)
+      (note.title ?? '').toLowerCase().includes(keywordLower) ||
+      (note.content?? '').toLowerCase().includes(keywordLower)
     );
   },
 

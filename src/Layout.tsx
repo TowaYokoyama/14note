@@ -65,7 +65,9 @@ const Layout = () => {
 
   const searchNotes = async (keyword: string) => {
     const notes = await noteRepository.findByKeyword(currentUser!.uid, keyword);
-    noteStore.set(notes);
+    console.log('🔍 検索キーワード:', keyword);
+  console.log('📄 検索結果:', notes);
+    //noteStore.set(notes);
     setSearchResult(notes);
   };
 
@@ -84,7 +86,7 @@ const Layout = () => {
         <Outlet />
         <SearchModal
           isOpen={isShowModal}
-          notes={searchResult}
+          notes={searchResult} //これが反映されている？
           onItemSelect={moveToDetail}
           onKeywordChanged={searchNotes}
           onClose={() => setIsShowModal(false)}

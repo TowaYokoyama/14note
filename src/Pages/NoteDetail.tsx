@@ -19,8 +19,7 @@ const NoteDetail = () => {
 
   useEffect(() => {
     fetchOne();
-  }, [id]);
-
+  }, [id]);//idが変わったとき、そのノートの情報を取得したいってこと　
   const fetchOne = async () => {
     setIsLoading(true);
     const note = await noteRepository.findOne(currentUser!.uid, id);
